@@ -4,8 +4,8 @@ function find() {
 	return db('users').select('id', 'username');
 }
 
-function findBy(filter) {
-	return db('users').where(filter);
+function findBy(name) {
+	return db('users').where(name);
 }
 
 async function add(user) {

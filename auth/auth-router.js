@@ -16,4 +16,21 @@ router.post('/register', async (req, res) => {
 	}
 });
 
+router.post('/login', async (req, res) => {
+	let { username, password } = req.body;
+
+	try {
+		const user = await Users.findBy({ username }).first();
+
+		if (user && bcrypt.compareSync(password, user.password)) {
+			res.status(200).json({ message: `Welcome ${username} !      ` });
+		} else {
+			res.status(401).json({ message: 'invalid credentials' });
+		}
+	} catch (error) {
+		console.log(error);
+		res.status(500).json(error);
+	}
+});
+
 module.exports = router;
