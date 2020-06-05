@@ -9,6 +9,7 @@ router.post('/register', async (req, res) => {
 
 	try {
 		const saved = await Users.add(user);
+		console.log(saved);
 		res.status(201).json(saved);
 	} catch (err) {
 		console.log(err);
